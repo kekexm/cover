@@ -1,0 +1,50 @@
+@charset "utf-8";
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,form,input,textarea,th,td,a{margin:0;padding:0}
+html{color:#333333;overflow:auto;overflow:-moz-scrollbars-vertical ; font-size:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-text-size-adjust:none}
+body,button,input,select,textarea,a{font: 14px / 1.667 "Microsoft Yahei", "Helvetica Neue","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif; word-break:break-all;}
+h1,h2,h3,h4,h5,h6{font-size:100%; font-weight: normal;}
+em,a{font-style:normal}
+small,a{font-size:12px}
+ul,ol,a{list-style:none}
+a{text-decoration:none;outline:none;-webkit-tap-highlight-color:rgba(255,255,255,0); font-size: inherit;}
+a:hover{text-decoration:none;}
+legend{color:#000}
+fieldset,img,a{border:0}
+button,input,select,textarea,a{font-size:100%; border:none 0; outline:none;}
+table{border-collapse:collapse;border-spacing:0}
+img{-ms-interpolation-mode:bicubic; vertical-align:top; border:0; pointer-events: none; -webkit-user-select: none; -moz-user-select: none;}
+textarea{resize:vertical; resize:none;}
+input:focus,textarea:focus{ outline:none;}
+input{-webkit-appearance: none;}
+input:-moz-placeholder , textarea:-moz-placeholder , select:-moz-placeholder{ color:#666666;}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder , select:-ms-input-placeholder{ color:#666666;}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder , select::-webkit-input-placeholder{ color:#666666;}
+
+.clearfix:after{content:"";display:block;clear:both}.clearfix{zoom:1}
+ 
+.fl{float: left; display: inline;}
+.fr{float: right; display: inline;}
+.body{background: #ffffff}
+
+
+
+.main{width: 640px;margin: 0 auto; display: block !important;}
+/*一周热点*/
+.hot-wrap .list-nav{padding:22px 40px 16px 30px;border-bottom: 3px solid #f2f2f2;overflow: hidden;}
+.list-nav .list-nav-pic{width: 100px;}
+.list-nav .list-nav-text{width: 440px; overflow: hidden;}
+.list-nav-text p{background: none;font-size: 26px;color: #393939;line-height: 34px;}
+
+/*详情页*/
+.detail{width: 580px;margin: 0 auto;}
+.detail-content{width: 100%;}
+.detail-content p{font-size: 24px;line-height: 36px;word-break: normal;text-indent: 2em;padding-bottom: 8px;}
+
+
+
+.aaaaaa{ font-size: 24px;}
+.bbbb{ font-size: 26px;}
+ a.ddddd{ display: block; color: #393939; overflow: hidden; clear: both; font-size: 26px;}
+.ddddd img{ display: inline; float: left; width: 100px;}
+.ddddd p{ display: block; float: left; font-size: 28px; clear: both; width: 440px; overflow: hidden;}
+

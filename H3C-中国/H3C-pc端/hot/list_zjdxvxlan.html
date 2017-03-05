@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,minimum-scale=1.0">
+<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<meta HTTP-EQUIV="Expires" CONTENT="-1">
+<title>H3C</title>
+<meta http-equiv="Cache-Control" content="max-age=86400 public"/>
+<meta name="keywords" content="H3C,绿洲,绿洲平台,SDN,NFV,Openflow,WiFi,vBRAS,大互联,大安全,大数据,云计算,华三,数据中心,路由器,交换机,无线,安全,网络,泛联网,物联网,多媒体通信,H3C官网,Networks,Switch,Router,security,idc,Cloud,BigData,Magic,网络功能虚拟化,软件定义网络,H3C官网" />
+<meta name="description" content="杭州华三通信技术有限公司（简称H3C），致力于IP技术与产品的研究、开发、生产、销售及服务。目前H3C在中国的交换机和企业级路由器（高中低端）市场份额排名第一，提供下一代数据中心、泛联网和多媒体通信为核心的三大解决方案，并得到广泛应用。" />
+<meta name="author" content="华三通信技术有限公司" />
+<meta name="Copyright" content="www.h3c.com.cn,版权所有,不可随意转载" />
+<link rel="shortcut icon" href="http://www.h3c.com.cn/tres/images/favicon.ico" />
+<link rel="stylesheet" href="../css/basic.css">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?7a16011efde560235609fa4d169ceeaa";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<body>
+	<div class="all_list">
+		<div class="list_warp">
+		<div class="header">
+			<div class="list_logo pub_pic">
+				<img src="../img/list/list_logo.png" alt="">
+			</div>
+			<p class="list_nav">
+				<a href="../index.html">首页</a>&gt;&nbsp;行业热点
+			</p>
+		</div>
+		<div class="list_content border-top">
+			<h1 class="list_title">
+				浙江电信城域网VxLAN+vBRAS最佳实践
+			</h1>
+			<!-- <p class="list_time">2016-09-02</p> -->
+			<div class="list_ban pub_pic">
+				<img src="../img/zjfa.jpg" alt="">
+			</div>
+			<div class="list_con">
+				<div class="list_text">
+					<div class="list_littlepic pub_pic2">
+						<img src="../img/list/list_icon.png" alt="">
+						<h2>前言</h2>
+					</div>
+					<p>随着SDN/NFV技术的快速发展和逐步成熟，DPDK技术让服务器转发性能大幅提升，百T级别虚拟化交换机在电信城域网规模部署，一种融合NFV+VxLAN+SDN的新型城域网模型呼之欲出。</p>
+				</div>
+				<div class="list_text">
+					<div class="list_littlepic pub_pic2">
+						<img src="../img/list/list_icon.png" alt="">
+						<h2>一、概述</h2>
+					</div>
+					<p style="padding-bottom:0">浙江电信城域网现有网络架构分为核心层、业务控制层、POP点交换机汇聚层和接入层，整个城域网自BRAS以下全部为二层交换结构。
+					</p>
+					<p  style="padding:0;">随着宽带视频流量迅猛增长，以及提速降费的迫切需求, 为了解决原有城域网汇聚层交换机万兆密度低，单机单链路无保护的现状，浙江电信率先在城域网汇聚层规模引入支持“多虚一”的高性能100T数据中心级交换机。
+					</p>
+					<p style="padding:0">高性能虚拟化交换机的引入，很好地满足了汇聚层高密10G和100G接口需求，实现了汇聚层设备和链路的故障倒换保护，为后期流量经营构建了强大的基础管道能力。但现有业务控制层大量部署的传统硬件BRAS/MSE在控制平面表现弱和灵活扩展性较差，运维要求高、难度大，逐渐成为城域网进一步演进的瓶颈，主要表现在如下3个方面：</p>
+					<ol>
+						<li>业务控制层瓶颈：现网BRAS/MSE设备控制平面如并发连接数，CPU利用率,QoS策略及队列数存在瓶颈，而转发能力却没有发挥出来，如10G线速接口流量只能到4G，因为每单板会话数的限制。</li>
+						<li>灵活性扩展性差：现网BRAS/MSE设备对新业务的支撑能力弱，各厂家标准不统一，测试上线周期太长。城域网出口流量的调度不够灵活，链路负载不均衡，部分出口链路利用率低。</li>
+						<li>运维复杂：每台设备需要独立配置和控制，对运维人员的技术水平要求高，无自动化集中统一控制平面。</li>	
+					</ol>
+					<div class="pic pub_pic">
+							<img src="../img/zj1.png" alt="">
+						</div>
+						<p style="text-align:center;padding:0;">图1 传统城域网网络架构拓扑</p>
+				</div>
+				<div class="list_text">
+					<div class="list_littlepic pub_pic2">
+						<img src="../img/list/list_icon.png" alt="">
+						<h2>新型SDN/NFV城域网模型概念设计及方案论证</h2>
+					</div>
+					<p style="padding-bottom:0">随着SDN/NFV技术的快速发展和逐步成熟，DPDK技术的出现让服务器转发性能大幅提升，百T级别虚拟化交换机在电信城域网规模部署，一种融合NFV+VxLAN+SDN的新型城域网模型呼之欲出。
+
+					</p>
+					<p  style="padding:0;">采用NFV技术的vBRAS虚拟网元具备强大的控制平面、灵活弹性可扩展，基于标准硬件x86架构上线快，可根据业务需求灵活定制，支持大规模集群技术，相比传统硬件BRAS设备可靠性和利用率大幅提高。
+
+					</p>
+					<p style="padding:0">在一个本地网范围内充分利旧现有的城域网POP机房，集中部署2~6个vBRAS资源池对业务进行集中处理，通过测算，一个标准机架部署12台两路高性能服务器可以承载约10万并发宽带用户，考虑冗余备份和性能余量，基本相当于把2个大型POP点的所有用户进行了整合。</p>
+					<p style="padding:0">考虑城域网QINQ冲突的可能性，为了减少对原有网络配置及业务模式的改动，在城域网POP点虚拟交换机启用VxLAN技术对用户QINQ报文进行封装，通过VxLAN隧道把报文透传到vBRAS进行处理，vBRAS和AAA计费平台根据VxLAN+QINQ对用户进行惟一识别。为了实现自动化的控制和运维，引入SDN控制器集中管理整个网络的控制平面，并对流量进行动态调度。新型城域网模型如图2所示。</p>
+						<!-- <h2 style="padding-left:0px;">DPDK架构</h2> -->
+						<div class="pic pub_pic">
+							<img src="../img/zj2.png" alt="">
+						</div>
+						<p style="text-align:center;padding:0;">图2 新型SDN/NFV城域网模型</p>
+				</div>
+				<div class="list_text">
+					<div class="list_littlepic pub_pic2">
+						<img src="../img/list/list_icon.png" alt="">
+						<h2>电信城域网宽带业务规划</h2>
+					</div>
+					<p>浙江电信的宽带产品主要分为面向家庭宽带的公众产品和面向政企客户的政企产品，承载业务主要是宽带拨号、IPTV和语音，大部分采用PPPOE方式拨号到BRAS设备处理，宽带用户主要分为公网双栈、私网双栈和 DS-Lite。主要产品分类如表1。</p>
+					<div class="pic pub_pic">
+							<img src="../img/zj3.png" alt="">
+						</div>
+						<p style="text-align:center;padding:0;">表1 浙江电信宽带产品策略图</p>
+					<p style="padding:0;">根据产品策略不同，分为共享接入和VLAN分离接入，2种接入方式的带宽控制策略如下。</p>
+					<p style="padding:0;">共享接入方式下，同一家庭的宽带业务和IPTV业务共享接入带宽，优先保障IPTV带宽，采用“X保X”的QoS策略。除业务自身的带宽控制外，还受家庭总带宽限制。共享接入方式的iptv_only产品，只进行业务带宽控制。</p>
+					<p style="padding:0;">分离接入方式下，IPTV业务和宽带业务CvLAN+PvLAN不同，每种业务独立进行带宽控制，采用“限流”QoS策略。需同时进行业务带宽和家庭总带宽控制。分离接入的IPTV_Only产品，只进行业务带宽控制，占用所有上网带宽。</p>
+					<p style="padding:0;">位于用户前端的CPE ONU划分3个CvLAN，分别用于上网、IPTV和语音，OLT上PON口先对CVLAN进行映射，保证每个用户VLAN不同，然后再打外层SVLAN、IPTV和语音一个SVLAN上行到二平面汇聚或多边缘设备，宽带上网一个SVLAN，上行到一平面汇聚。每个PON板分配的SVLAN相同，这样一个大型本地网规划1000个SVLAN足够使用。</p>
+					<p style="padding:0;">VxLAN ID 规划相对比较灵活，主要是因为16M ID足够去分配。为了防止出现前期城域网VLAN规划的混乱及冲突问题，基于现有一个POP点宜规划几个VxLAN ID，可根据业务类型进行规划，也可根据新兴业务需求进行规划。</p>
+				</div>
+				<div class="list_text">
+					<div class="list_littlepic pub_pic2">
+						<img src="../img/list/list_icon.png" alt="">
+						<h2>电信城域网vBRAS试点上线的3道坎</h2>
+					</div>
+					<p style="padding-bottom:0;">浙江电信的城域网VBRAS试点上线共经历了3个阶段。</p>
+					<p style="padding:0;"><b>第一阶段，完成三轮基本功能和性能测试，版本回归测试及性能优化。</b></p>
+					<p style="padding:0">由于是业界首次把vBRAS应用于电信城域网，为了保障试点质量和稳定性进行了3轮的严苛功能测试。<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一轮测试主要完成宽带上网业务测试（公私网IPv4、公私网双栈、DS-Lite和IPV6单栈），宽带上网+IPTV业务测试（PPPOE和IPOE两种接入方式），宽带+IPTV+语音测试，VPDN测试，大客户VPN专线测试，路由和管理功能测试，AAA平台专项对接测试（认证、计费、COA/DM功能测试、IPV6功能测试、Radius下发QoS测试等）。<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二轮测试针对第一轮测试发现的功能性问题进行修订，并进行版本回归测试，基于现网流量模型的性能摸底测试。<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第三轮测试在IRF双机+VxLAN模式下，对前期所有功能点再次进行了遍历测试，并对转发性能进行了优化测试。</p>
+					<p style="padding:0;"><b>第二阶段主要完成与计费平台的业务对接，产品标定和接入约定，配置规范文档修订等。</b></p>
+					<p style="padding:0">计费平台对接及产品标定主要涉及分层QoS，多Session限速功能，针对300多个宽带产品逐一进行标定测试，期间有多次反复，耗时约半年的时间。浙江电信的计费平台承载全省上千万用户的认证计费业务，是全省业务的核心平台之一，任何的变化都要求慎之又慎。新BRAS入网需要计费平台对应增加相应的产品逻辑，有一定的风险性，所以对标定报告的审核异常严格，不允许有任何错误和疏漏，看似繁琐，实则是对能力、水平及职业精神的考验。<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vBRAS的带宽控制机制主要分为两个层次。<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;接入用户带宽控制：控制接入用户的上下行带宽，每个会话（Session id）独立控制，通过AAA下发的Filter-id属性实现，Filter-ID对应设备配置的User-profile。<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家庭用户总带宽控制：属于同一家庭用户的会话，需控制所有会话的总带宽，通过AAA下发的H3C-Subscriber-Profile属性（H3C私有属性）实现，H3C-Subscriber-Profile对应设备配置的Session-group。
+					<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家庭用户标识：通过CvLAN+PvLAN进行识别，CvLAN和PvLAN都相同的用户标识为同一家庭用户，属于同一个Session-group。<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPTV和宽带用户的带宽优先级控制策略如下：</p>
+					<ol>
+						<li>属于同一家庭用户的，优先保证IPTV业务的带宽，通过配置业务优先级实现</li>
+						<li>IPTV业务和宽带业务带宽之和大于家庭总带宽时，IPTV业务会抢占宽带业务带宽，若IPTV业务带宽超过家庭总带宽，则宽带业务带宽为零</li>
+						<li>帐号的Session数控制由AAA完成，为保证宽带业务带宽，需通过AAA控制IPTV业务的session数，确保IPTV业务总带宽少于家庭总带宽</li>		
+					</ol>
+					<p style="padding:0;"><b>第三阶段实现业务割接上线和现场保障</b></p>
+					<p style="padding:0">过了产品标定及文档提交审核这一关后，静等计费平台代码上线，同时准备割接实施方案，经过与用户运维团队的反复讨论确认，最终敲定割接方案的所有细节及业务割接范围。<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;选取景芳POP点的一台OLT的用户进行试点，POP点交换机把OLT上行的QINQ流量引入VxLAN隧道，通过VxLAN隧道透传到vBRAS资源池进行认证计费处理。<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业务类型主要是宽带及专线用户。第一次上线商用尽量控制用户数和业务类型。上线后的现场保障至关重要，第一周安排技术团队“现场守局”保障，一天的流量高峰一般在20：00~23:00，一周的流量高峰一般在周末晚上。由于宽带用户一般分布在很广的住宅区范围内，一旦有用户上网业务异常，需要有专人与电信外线服务人员进行实时沟通，了解第一手故障现象并快速做出响应。</p>
+					<div class="pic pub_pic">
+						<img src="../img/zj4.png" alt="">
+					</div>
+					<p style="text-align:center;padding:0;">图3 试点上线网络拓扑图</p>
+					<p>
+					试点上线成功后，需要长期观察设备运行的稳定性，并逐步增加用户数量和业务类型，进行加压测试。逐步引入SDN控制器，流量调度功能及服务链，N:1的热备份等。试点成熟后，网络架构向目标架构演进，在CR和POP点交换机之间增加交换核心，减少流量迂回对CR路由器端口的压力。</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="all_pub">
+		<div class="pub_bottom pub_pic">
+			<img src="../img/list/pub_bottom.png" alt="">
+		</div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<p>版权所有 2015-2016 新华三集团.保留一切权利.浙ICP备09064986-1号 | <i></i> 浙公网安备 33010802004375号</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,minimum-scale=1.0">
+<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<meta HTTP-EQUIV="Expires" CONTENT="-1">
+<title>H3C</title>
+<meta http-equiv="Cache-Control" content="max-age=86400 public"/>
+<meta name="keywords" content="H3C,绿洲,绿洲平台,SDN,NFV,Openflow,WiFi,vBRAS,大互联,大安全,大数据,云计算,华三,数据中心,路由器,交换机,无线,安全,网络,泛联网,物联网,多媒体通信,H3C官网,Networks,Switch,Router,security,idc,Cloud,BigData,Magic,网络功能虚拟化,软件定义网络,H3C官网" />
+<meta name="description" content="杭州华三通信技术有限公司（简称H3C），致力于IP技术与产品的研究、开发、生产、销售及服务。目前H3C在中国的交换机和企业级路由器（高中低端）市场份额排名第一，提供下一代数据中心、泛联网和多媒体通信为核心的三大解决方案，并得到广泛应用。" />
+<meta name="author" content="华三通信技术有限公司" />
+<meta name="Copyright" content="www.h3c.com.cn,版权所有,不可随意转载" />
+<link rel="shortcut icon" href="http://www.h3c.com.cn/tres/images/favicon.ico" />
+<link rel="stylesheet" href="../css/basic.css">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?7a16011efde560235609fa4d169ceeaa";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<body>
+	<div class="all_list">
+		<div class="list_warp">
+		<div class="header">
+			<div class="list_logo pub_pic">
+				<img src="../img/list/list_logo.png" alt="">
+			</div>
+			<p class="list_nav">
+				<a href="../index.html">首页</a>&gt;&nbsp;行业热点
+			</p>
+		</div>
+		<div class="list_content border-top">
+			<h1 class="list_title">
+				舒缓宽带压力 城域网汇聚POP点引入vBRAS
+
+			</h1>
+			<!-- <p class="list_time">2016-09-02</p> -->
+			<div class="list_ban pub_pic">
+				<img src="../img/POP.jpg" alt="">
+			</div>
+			<div class="list_con">
+				<div class="list_text">
+					<div class="list_littlepic pub_pic2">
+						<img src="../img/list/list_icon.png" alt="">
+						<h2>前言
+</h2>
+					</div>
+					<p>在当前的带宽需求下，硬件扩容涉及到大规模的BRAS、SR、CR的升级替换，由20G/40G平台向100G/400G平台升级，由此产生的投资效益成本和利用率不均衡这两大问题，促使运营商不得不去探讨和研究新的解决方案。
+</p>
+				</div>
+				<div class="list_text">
+					<div class="list_littlepic pub_pic2">
+						<img src="../img/list/list_icon.png" alt="">
+						<h2>一、概述</h2>
+					</div>
+					<p style="padding-bottom:0">为满足“宽带中国”和“提速降费”的带宽要求，运营商已经在接入层全面推进了全光网改造，将传统PSTN语音和DSLAM宽带网络全部采用FTTH/B网络改造，目前一大批全光县、全光市、全光省陆续宣布建成，接入层高速的全光网络改造将于近期内基本完成。
+
+					</p>
+					<p  style="padding:0;">接入网带宽能力的快速提升，使得在应用层面以IPTV为代表的视频类业务快速发展，并一跃成为目前最主要的应用，标清视频、高清视频、4K电视不断提出更高的带宽需求，组播业务和点播业务也分别给城域网提出了不同要求。
+
+					</p>
+					<p style="padding:0">另外，IPv4地址资源短缺问题也是长期困扰互联网的难题，目前IPv4资源已经耗尽，没有新的IPv4地址资源可申请，在IPv6规模应用前，只能靠更充分地提高原有IPv4利用率和部署NAT44方式作为过渡，以解决IP地址紧张的问题。</p>
+					<p style="padding:0">上述这些问题都对IP城域网提出更高处理能力的要求，而提升网络能力就面临解决方案的选择：一是沿用传统的扩容方式，对汇聚层、核心层设备进行物理硬件的能力扩容，二是探讨新兴的SDN和NFV技术解决方案。</p>
+					<p style="padding:0">在接入网带宽瓶颈解决后，IP城域网的带宽压力问题已经凸显，如何快速满足接入层爆发式的带宽增长需求，成为IP城域网当前的主要问题。</p>
+				</div>
+				<div class="list_text">
+					<div class="list_littlepic pub_pic2">
+						<img src="../img/list/list_icon.png" alt="">
+						<h2>设备升级替换催促新技术落地
+</h2>
+					</div>
+					<p style="padding-bottom:0">在当前的带宽需求下，硬件扩容涉及到大规模的BRAS、SR、CR的升级替换，由20G/40G平台向100G/400G平台升级，对于大规模的业务控制层节点设备升级到100G/400G平台，投资效益成本和利用率不均衡这两大问题也使运营商有必要去探讨和研究新的解决方案。
+
+
+					</p>
+					<p  style="padding:0;">近两年，网络领域最火热的当属SDN和NFV两大技术，可以预见，在未来一段时间内，SDN和NFV将成为网络世界的“主角”！目前，云计算数据中心SDN、移动核心网NFV、IP城域网NFV是当前探讨较多的应用场景。
+
+
+					</p>
+					<p style="padding:0">NFV主要目标是解决运营商面临的网络问题和业务挑战，不同运营商面临的实际情况各不相同，所处的竞争环境也有差异。因此，在NFV的应用上采用的策略和方向也不尽相同，有的先从BRAS设备虚拟化入手，也有先尝试虚拟化CPE，这两种方案所解决的问题各有侧重，但最终方向都是利用NFV技术实现硬件平台的标准化和网络功能的虚拟化，这里我们重点探讨一下BRAS虚拟化的方案。</p>
+
+						
+				</div>
+				<div class="list_text">
+					<div class="list_littlepic pub_pic2">
+						<img src="../img/list/list_icon.png" alt="">
+						<h2>IP宽带城域网vBRAS方案探讨
+</h2>
+					</div>
+					<p>目前IP城域网业务控制层主要存在以下4个问题：</p>
+					<p style="padding:0;">1.现有业务与网络松耦合模式，提供增值服务及端到端智能管道能力有限；
+</p>
+					<p style="padding:0;">2.BRAS为分布式部署，由于地域及业务不均衡，不能有效利用设备利用率，导致资源不能有效利用，不利于节省投资；
+</p>
+					<p style="padding:0;">3.普遍为20G/40G平台设备，由于接入层全面提速，产生了大量全新的OLT 10G颗粒度的上联需求，导致平台能力不足，并需要向更高的平台升级改造，造成投资成本急剧上升；
+</p>
+					<p style="padding:0;">4.BRAS为各厂家封闭式系统，新业务能力上线慢，与业务系统对接复杂。
+</p>
+					<p style="padding:0;">vBRAS是业界首先采用NFV技术的专业网络解决方案，如图1所示，其功能主要体现在业务控制层：采用Overlay技术，引入SDN控制器，实现控制与数据的分离；在数据中心引入VNF Manager，实现BRAS功能虚拟化。</p>
+					<!-- <h2 style="padding-left:0px;">DPDK架构</h2> -->
+						<div class="pic pub_pic">
+							<img src="../img/sx1.png" alt="">
+						</div>
+						<p style="text-align:center;padding:0;">图1 vBRAS城域网组网图</p>
+				</div>
+				<div class="list_text">
+					<div class="list_littlepic pub_pic2">
+						<img src="../img/list/list_icon.png" alt="">
+						<h2>汇聚POP点vBRAS演进路线</h2>
+					</div>
+					<p style="padding-bottom:0;">考虑现有网络和vBRAS的技术演进因素，IP宽带城域网汇聚POP点vBRAS方案演进分3个阶段。</p>
+					<p style="padding:0;"><b>步骤一，基于SDN/NFV架构的POP虚拟化（如图2所示）</b></p>
+					<p style="padding:0"><b>虚拟化：</b>BRAS设备虚拟化，局部引入替代原节点物理BRAS设备，负责用户的接入认证、及业务功能。<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>支持的业务功能：</b>PPPoE/IPoE/Portal Server、基本QoS功能、用户自助提速功能（执行AAA下发LR参数及UserProfile的策略）、NAT444功能、IPv4/IPv6、MPLS VPN、L2TP VPDN、AAA对接、分层Qos功能、支持HA热备。<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>性能扩展和可靠性：</b>IRF集群内部使用1:1堆叠保证系统可靠性和业务性能，支持用户Session和会话同步；支持多集群分担业务流量，交换机根据用户QinQ标签将不同用户的流量引入不同vBRAS集群。当集群内部性能无法满足用户需求时，可以增加vBRAS设备并与原有设备形成新的集群，满足用户性能扩展的需求。<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>承载网络的数据中心化：</b>基于SDN的Overlay承载网络实现城域网网络的虚拟化，所有城域网交换机支持VxLAN功能，支持基于VxLAN业务隔离，支持业务的自动迁移和策略跟随。</p>
+					<div class="pic pub_pic">
+							<img src="../img/sx2.png" alt="">
+						</div>
+						<p style="text-align:center;padding:0;">图2 vBRAS第一阶段方案</p>
+					<p style="padding:0;"><b>步骤二，基于SDN/NFV架构的POP资源池化方案（如图3所示）</b></p>
+					<p style="padding:0"><b>资源池化的管理：</b>管理网络中增加基于Openstack的VNFM，管理vBRAS整个生命周期，提供vBRAS自动部署，状态监控和配置管理功能；通过VNFM和VCF Controller实现弹性调整；VCF Controller提供标准北向接口Rest API，实现与运维平台的对接；整个Cluster对外呈现一个管理实体，管理简单。</p>
+					<div class="pic pub_pic">
+							<img src="../img/sx3.png" alt="">
+						</div>
+						<p style="text-align:center;padding:0;">图3 vBRAS第二阶段方案</p>
+					<p style="padding:0;"><b>步骤三，基于SDN/NFV架构的POP业务定制方案（如图4所示）</b></p>
+					<p style="padding:0"><b>服务链支持：</b>利用NFV实现虚拟服务链资源池；配合服务链代理技术，在服务链中引入第三方设备，实现标准开放的业务资源池；</p>
+					<div class="pic pub_pic">
+							<img src="../img/sx4.png" alt="">
+						</div>
+						<p style="text-align:center;padding:0;">图4 vBRAS第三阶段方案</p>
+				</div>
+				<div class="list_text">
+					<div class="list_littlepic pub_pic2">
+						<img src="../img/list/list_icon.png" alt="">
+						<h2>引入vBRAS方案应注意的事项</h2>
+					</div>
+					<p style="padding-bottom:0;">从SDN和NFV的炙热度可以知道，vBRAS是IP宽带城域网业务控制层演进的方向，但就现阶段而言，在探讨vBRAS引入方案时还应该充分考虑以下三个方面。</p>
+					<ol>
+						<li>vBRAS是一项技术变革同时也带来管理变革，需要在规划、建设、维护等方面同时做好充分准备，在组织适配、流程适配上做好相应的提前准备；</li>
+						<li>要充分考虑新技术与原有业务、网络的无缝衔接，通过局部试点，经过充分验证后，再进行大规模部署；</li>
+						<li>由于NFV是以通用服务器实现专用电信设备，通用服务器的强项是计算能力，所以NFV在纯控制场景优势明显，例如无线核心网的vIMS。城域BRAS是控制与转发并重的一个设备，而x86转发能力相对现有的BRAS还有待突破，短期看vBRAS的转发性能、成本、功耗等方面还不能完全替换物理BRAS，但可以根据实际需求做积极探讨和尝试。</li>
+					</ol>
+				</div>
+				<div class="list_text">
+					<div class="list_littlepic pub_pic2">
+						<img src="../img/list/list_icon.png" alt="">
+						<h2>未来展望</h2>
+					</div>
+					<p>随着SDN和NFV技术不断完善，其对运营商的价值与可行性在不断的研讨和实践中已经得到初步验证，逐步形成商用的场景和解决方案。2016年是业界开始逐渐试点和发展SDN和NFV的一年，相信它们在实际应用中会得到进一步完善，网络质量将会更加优化，将会以高质量网络匹配云计算、大数据等新兴信息技术业务应用发展对网络的需求，大大提升用户体验，为业务规模化运营打下提供良好支撑。</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="all_pub">
+		<div class="pub_bottom pub_pic">
+			<img src="../img/list/pub_bottom.png" alt="">
+		</div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<p>版权所有 2015-2016 新华三集团.保留一切权利.浙ICP备09064986-1号 | <i></i> 浙公网安备 33010802004375号</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>
